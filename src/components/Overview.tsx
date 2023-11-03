@@ -1,15 +1,40 @@
-import { Card, Grid } from '@mui/material'
-import React from 'react'
+import { Grid, Paper, styled } from "@mui/material";
 
-type Props = {}
+const Overview = () => {
+  const Item = styled(Paper)(() => ({
+    backgroundColor: "#98d6a9",
+    padding: 8,
+    textAlign: "center",
+    color: "black",
+  }));
 
-const Overview = (props: Props) => {
   return (
-    <div>Overview
-      <Card>heeehe</Card>
-      <Grid>heeehe</Grid>
-    </div>
-  )
-}
+    <Grid container spacing={4}>
+      <Grid item xs={6}>
+        <Item elevation={3}>One</Item>
+      </Grid>
 
-export default Overview
+      <Grid item xs={6}>
+        <Item elevation={3}>Two</Item>
+      </Grid>
+
+      <Grid item xs={6}>
+        <Item elevation={3}>Three</Item>
+      </Grid>
+
+      <Grid item xs={6}>
+        <Item elevation={3}>Four</Item>
+      </Grid>
+
+      <Grid item xs={6}>
+        <Item elevation={3}>Five</Item>
+      </Grid>
+
+      <Grid item xs={6}>
+        <Item elevation={3}>Six</Item>
+      </Grid>
+    </Grid>
+  );
+};
+
+export default Overview;
