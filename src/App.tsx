@@ -1,6 +1,6 @@
 import "./App.css";
 import Overview from "./components/Overview";
-import { ResponsiveAppBar } from "./components/ResponsiveAppBar";
+import { MenuBar } from "./components/MenuBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const darkTheme = createTheme({
@@ -13,8 +13,9 @@ function App() {
   return (
     <>
       {/* <ThemeProvider theme={darkTheme}> */}
-        <ResponsiveAppBar />
-        <Overview />
+      <MenuBar />
+      <div style={{ height: "64px" }}></div>
+      <Overview />
       {/* </ThemeProvider> */}
     </>
   );
