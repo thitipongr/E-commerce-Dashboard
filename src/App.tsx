@@ -14,7 +14,6 @@ function App() {
     <>
       {/* <ThemeProvider theme={darkTheme}> */}
       <MenuBar />
-      <div style={{ height: "64px" }}></div>
       <Overview />
       {/* </ThemeProvider> */}
     </>
