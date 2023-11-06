@@ -1,5 +1,5 @@
 import "./App.css";
-import Overview from "./components/Overview";
+import Overview from "./views/Overview";
 import { MenuBar } from "./components/MenuBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
