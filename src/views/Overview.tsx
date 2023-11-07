@@ -1,40 +1,11 @@
-import { Grid, Paper, styled } from "@mui/material";
+import React from 'react'
 
-const Overview = () => {
-  const Item = styled(Paper)(() => ({
-    backgroundColor: "#98d6a9",
-    padding: 8,
-    textAlign: "center",
-    color: "black",
-  }));
+type Props = {}
 
+const Overview = (props: Props) => {
   return (
-    <Grid container spacing={4}>
-      <Grid item xs={6}>
-        <Item elevation={3}>One</Item>
-      </Grid>
+    <div>Overview</div>
+  )
+}
 
-      <Grid item xs={6}>
-        <Item elevation={3}>Two</Item>
-      </Grid>
-
-      <Grid item xs={6}>
-        <Item elevation={3}>Three</Item>
-      </Grid>
-
-      <Grid item xs={6}>
-        <Item elevation={3}>Four</Item>
-      </Grid>
-
-      <Grid item xs={6}>
-        <Item elevation={3}>Five</Item>
-      </Grid>
-
-      <Grid item xs={6}>
-        <Item elevation={3}>Six</Item>
-      </Grid>
-    </Grid>
-  );
-};
-
-export default Overview;
+export default Overview

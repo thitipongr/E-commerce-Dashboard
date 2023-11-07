@@ -1,7 +1,8 @@
 import "./App.css";
 import Overview from "./views/Overview";
-import { MenuBar } from "./components/MenuBar";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Header from "./views/Header";
+import "./assets/global.css"
 
 const darkTheme = createTheme({
   palette: {
@@ -13,8 +14,7 @@ function App() {
   return (
     <>
       {/* <ThemeProvider theme={darkTheme}> */}
-      <MenuBar />
-      <Overview />
+      <Header />
       {/* </ThemeProvider> */}
     </>
   );
