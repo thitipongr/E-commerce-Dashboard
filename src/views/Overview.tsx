@@ -1,11 +1,27 @@
-import React from 'react'
+import SummarySale from "../components/Overview/SummarySale";
+import Header from "../components/Overview/Header";
+import { Container } from "@mui/material";
 
-type Props = {}
+// * 1. หน้า Overview:
+// // TODO: แสดงยอดขายรวม, จำนวนสินค้าที่ขายได้, จำนวนลูกค้าใหม่, และอัตราการเติบโตเมื่อเทียบกับเดือนที่แล้ว
+// TODO: แสดงยอดขายรวม
+// TODO: จำนวนสินค้าที่ขายได้
+// TODO: จำนวนลูกค้าใหม่
+// TODO: อัตราการเติบโตเมื่อเทียบกับเดือนที่แล้ว
+// TODO: กราฟแสดงยอดขายในแต่ละวันของเดือนปัจจุบัน
+// TODO: รายการสินค้าขายดี 5 อันดับแรก
+
+type Props = {};
 
 const Overview = (props: Props) => {
   return (
-    <div>Overview</div>
-  )
-}
+    <div>
+      <Container maxWidth="xl" sx={{ mt: "1rem" }}>
+        <Header />
+        <SummarySale />
+      </Container>
+    </div>
+  );
+};
 
-export default Overview
+export default Overview;
