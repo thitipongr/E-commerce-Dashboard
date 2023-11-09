@@ -1,12 +1,7 @@
 // TODO: แสดงยอดขายรวม
-import React from 'react'
 
-type Props = {}
+const SummarySale = () => {
+  return <div>SummarySale</div>;
+};
 
-const SummarySale = (props: Props) => {
-  return (
-    <div>SummarySale</div>
-  )
-}
-
-export default SummarySale
+export default SummarySale;

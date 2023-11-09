@@ -1,11 +1,5 @@
-import React from 'react'
+const SalesReport = () => {
+  return <div>SalesReport</div>;
+};
 
-type Props = {}
-
-const SalesReport = (props: Props) => {
-  return (
-    <div>SalesReport</div>
-  )
-}
-
-export default SalesReport
+export default SalesReport;

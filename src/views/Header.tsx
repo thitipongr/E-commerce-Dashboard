@@ -1,12 +1,7 @@
-import React from 'react'
-import MenuBar from '../components/Header/MenuBar'
+import MenuBar from "../components/Header/MenuBar";
 
-type Props = {}
+const Header = () => {
+  return <MenuBar />;
+};
 
-const Header = (props: Props) => {
-  return (
-    <MenuBar />
-  )
-}
-
-export default Header
+export default Header;

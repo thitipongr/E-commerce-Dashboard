@@ -11,9 +11,7 @@ import { Container } from "@mui/material";
 // TODO: กราฟแสดงยอดขายในแต่ละวันของเดือนปัจจุบัน
 // TODO: รายการสินค้าขายดี 5 อันดับแรก
 
-type Props = {};
-
-const Overview = (props: Props) => {
+const Overview = () => {
   return (
     <div>
       <Container maxWidth="xl" sx={{ mt: "1rem" }}>
