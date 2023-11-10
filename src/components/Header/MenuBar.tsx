@@ -47,7 +47,7 @@ const MenuBar = () => {
               noWrap
               sx={{
                 mr: 2,
-                display: { xs: "none", md: "flex" },
+                display: { xs: "none", sm: "flex" },
                 fontFamily: "monospace",
                 fontWeight: 700,
                 color: "inherit",
@@ -56,12 +56,12 @@ const MenuBar = () => {
               }}
             >
               <StorefrontTwoTone
-                sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                sx={{ display: { xs: "none", sm: "flex" }, mr: 1 }}
               />
               ECommerce Dashboard
             </Typography>
           </Link>
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "flex", sm: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -87,7 +87,7 @@ const MenuBar = () => {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: "block", md: "none" },
+                display: { xs: "block", sm: "none" },
               }}
             >
               {pages.map((page) => (
@@ -106,20 +106,21 @@ const MenuBar = () => {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: "flex", md: "none" },
+              display: { xs: "flex", sm: "none" },
               flexGrow: 1,
               fontFamily: "monospace",
               fontWeight: 700,
               color: "inherit",
               textDecoration: "none",
+              alignItems: "center",
             }}
           >
             <StorefrontTwoTone
-              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+              sx={{ display: { xs: "flex", sm: "none" }, mr: 1 }}
             />
             ECMD
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" } }}>
             {pages.map((page) => (
               <Link className="react-link" to={`/${page}`} key={page}>
                 <Button

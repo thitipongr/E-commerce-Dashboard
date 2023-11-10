@@ -68,16 +68,6 @@ const Header = () => {
         setEndDate(dayjs());
         break;
       }
-      // <MenuItem value={1}>Today</MenuItem>
-      // <MenuItem value={2}>This Week</MenuItem>
-      // <MenuItem value={3}>Last Week</MenuItem>
-      // <MenuItem value={4}>Last 7 Days</MenuItem>
-      // <MenuItem value={5}>Curent Month</MenuItem>
-      // <MenuItem value={6}>Last Month</MenuItem>
-      // <MenuItem value={7}>Curent Year</MenuItem>
-      // <MenuItem value={8}>Last Year</MenuItem>
-      // <MenuItem value={9}>All Time</MenuItem>
-      // <MenuItem value={10} disabled>
       default: {
         null;
         break;
@@ -87,15 +77,19 @@ const Header = () => {
 
   return (
     <Stack
-      direction={{ xs: "column", md: "row" }}
-      justifyContent={{ xs: "center", md: "space-between" }}
+      direction={{ xs: "column", sm: "row" }}
+      justifyContent={{ xs: "center", sm: "space-between" }}
       alignItems="center"
       spacing={1}
+      // mb={4}
     >
       <Typography variant="h5">Welcome, {`Overview`}</Typography>
       <Box>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <Stack direction={{ xs: "column", md: "row" }} spacing={1}>
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={{ xs: "1rem", sm: "8px" }}
+          >
             <DatePicker
               label="Start Date"
               value={startDate}

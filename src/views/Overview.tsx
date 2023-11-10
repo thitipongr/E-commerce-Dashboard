@@ -1,6 +1,6 @@
 import SummarySale from "../components/Overview/SummarySale";
 import Header from "../components/Overview/Header";
-import { Container } from "@mui/material";
+import { Box, Container, Grid } from "@mui/material";
 
 // * 1. หน้า Overview:
 // // TODO: แสดงยอดขายรวม, จำนวนสินค้าที่ขายได้, จำนวนลูกค้าใหม่, และอัตราการเติบโตเมื่อเทียบกับเดือนที่แล้ว
@@ -15,8 +15,23 @@ const Overview = () => {
   return (
     <div>
       <Container maxWidth="xl" sx={{ mt: "1rem" }}>
-        <Header />
-        <SummarySale />
+        <Box mb={"1rem"}>
+          <Header />
+        </Box>
+        <Grid container columnSpacing={2} rowSpacing={2}>
+          <Grid item xs={12} md={3} sm={6}>
+            <SummarySale />
+          </Grid>
+          <Grid item xs={12} md={3} sm={6}>
+            {/* <SummarySale /> */}
+          </Grid>
+          <Grid item xs={12} md={3} sm={6}>
+            {/* <SummarySale /> */}
+          </Grid>
+          <Grid item xs={12} md={3} sm={6}>
+            {/* <SummarySale /> */}
+          </Grid>
+        </Grid>
       </Container>
     </div>
   );
