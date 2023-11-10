@@ -25,9 +25,11 @@ ChartJS.register(
   Filler
 );
 
-const SummarySale = () => {
+const ProductsSold = () => {
   const post_profit = Math.random() * 10000000;
   const current_profit = Math.random() * 10000000;
+  console.log(typeof current_profit);
+
   const total_profit_persent = (current_profit / post_profit - 1) * 100;
 
   const profit_color_light =
@@ -81,7 +83,7 @@ const SummarySale = () => {
       <Grid item xs={12} mb={1}>
         <Stack direction={"row"} alignItems={"center"}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            Summary Sale
+            Products Sold
           </Typography>
           <Stack
             ml={1}
@@ -129,4 +131,4 @@ const SummarySale = () => {
   );
 };
 
-export default SummarySale;
+export default ProductsSold;

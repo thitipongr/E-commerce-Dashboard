@@ -1,10 +1,11 @@
 import SummarySale from "../components/Overview/SummarySale";
 import Header from "../components/Overview/Header";
 import { Box, Container, Grid } from "@mui/material";
+import ProductsSold from "../components/Overview/ProductsSold";
 
 // * 1. หน้า Overview:
 // // TODO: แสดงยอดขายรวม, จำนวนสินค้าที่ขายได้, จำนวนลูกค้าใหม่, และอัตราการเติบโตเมื่อเทียบกับเดือนที่แล้ว
-// TODO: แสดงยอดขายรวม
+// // TODO: แสดงยอดขายรวม
 // TODO: จำนวนสินค้าที่ขายได้
 // TODO: จำนวนลูกค้าใหม่
 // TODO: อัตราการเติบโตเมื่อเทียบกับเดือนที่แล้ว
@@ -23,7 +24,7 @@ const Overview = () => {
             <SummarySale />
           </Grid>
           <Grid item xs={12} md={3} sm={6}>
-            {/* <SummarySale /> */}
+            <ProductsSold />
           </Grid>
           <Grid item xs={12} md={3} sm={6}>
             {/* <SummarySale /> */}
