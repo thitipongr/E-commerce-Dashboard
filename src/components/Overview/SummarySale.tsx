@@ -1,5 +1,5 @@
 // TODO: แสดงยอดขายรวม
-import { Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import {
   KeyboardDoubleArrowUp,
   KeyboardDoubleArrowDown,
@@ -27,11 +27,11 @@ ChartJS.register(
 const SummarySale = () => {
   const post_profit = Math.random() * 10000000;
   const current_profit = Math.random() * 10000000;
-  const total_profit = current_profit - post_profit;
   const total_profit_persent = (current_profit / post_profit - 1) * 100;
 
-  const profit_color_light = total_profit > 0 ? "#4caf5050" : "#ef535050";
-  const profit_color_dark = total_profit > 0 ? "#1b5e20" : "#c62828";
+  const profit_color_light =
+    total_profit_persent > 0 ? "#4caf5050" : "#ef535050";
+  const profit_color_dark = total_profit_persent > 0 ? "#1b5e20" : "#c62828";
 
   const options = {
     scales: {
@@ -87,8 +87,10 @@ const SummarySale = () => {
             p={0.5}
             border={"2px solid"}
             borderRadius={1}
-            borderColor={total_profit > 0 ? "success.dark" : "error.dark"}
-            bgcolor={total_profit > 0 ? "success.light" : "error.light"}
+            borderColor={
+              total_profit_persent > 0 ? "success.dark" : "error.dark"
+            }
+            bgcolor={total_profit_persent > 0 ? "success.light" : "error.light"}
             alignItems={"center"}
             flexDirection={"row"}
           >
@@ -98,22 +100,26 @@ const SummarySale = () => {
               })}
               %
             </Typography>
-            {total_profit > 0 ? (
-              <KeyboardDoubleArrowUp />
-            ) : (
-              <KeyboardDoubleArrowDown />
-            )}
+            <Box display={{ xs: "none", md: "flex" }}>
+              {total_profit_persent > 0 ? (
+                <KeyboardDoubleArrowUp />
+              ) : (
+                <KeyboardDoubleArrowDown />
+              )}
+            </Box>
           </Stack>
         </Stack>
       </Grid>
       <Grid item xs={12} mb={1}>
-        <Typography variant="body1">
-          {`${total_profit > 0 ? "+" : ""}${total_profit.toLocaleString(
-            undefined,
-            {
-              maximumFractionDigits: 2,
-            }
-          )} ฿`}
+        <Typography variant="h4">
+          {`${current_profit.toLocaleString(undefined, {
+            maximumFractionDigits: 2,
+          })} ฿`}
+        </Typography>
+        <Typography variant="h5" color={"grey.400"}>
+          {`${post_profit.toLocaleString(undefined, {
+            maximumFractionDigits: 2,
+          })} ฿`}
         </Typography>
       </Grid>
       <Grid item xs={12} mb={1}>
@@ -121,7 +127,7 @@ const SummarySale = () => {
       </Grid>
       <Grid item xs={12}>
         <Typography variant="body1" textAlign={"right"}>
-          {`From Jan 01, 2023 - March 01, 2023`}
+          {`Jan 01, 2023 - March 01, 2023`}
         </Typography>
       </Grid>
     </Grid>
