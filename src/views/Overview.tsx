@@ -1,18 +1,35 @@
-import SummarySale from "../components/Overview/SummarySale";
 import Header from "../components/Overview/Header";
 import { Box, Container, Grid } from "@mui/material";
-import ProductsSold from "../components/Overview/ProductsSold";
+import GraphCard from "../components/Overview/sub-components/GraphCard";
+import dayjs from "dayjs";
 
 // * 1. หน้า Overview:
-// // TODO: แสดงยอดขายรวม, จำนวนสินค้าที่ขายได้, จำนวนลูกค้าใหม่, และอัตราการเติบโตเมื่อเทียบกับเดือนที่แล้ว
-// // TODO: แสดงยอดขายรวม
-// TODO: จำนวนสินค้าที่ขายได้
+// ///TODO: แสดงยอดขายรวม, จำนวนสินค้าที่ขายได้, จำนวนลูกค้าใหม่, และอัตราการเติบโตเมื่อเทียบกับเดือนที่แล้ว
+// ///TODO: แสดงยอดขายรวม
+// ///TODO: จำนวนสินค้าที่ขายได้
 // TODO: จำนวนลูกค้าใหม่
 // TODO: อัตราการเติบโตเมื่อเทียบกับเดือนที่แล้ว
 // TODO: กราฟแสดงยอดขายในแต่ละวันของเดือนปัจจุบัน
 // TODO: รายการสินค้าขายดี 5 อันดับแรก
 
 const Overview = () => {
+  const data = [
+    {
+      label: "Summary Sale",
+      post_data: Math.random() * 10000000,
+      current_data: Math.random() * 10000000,
+      post_date: String(dayjs()),
+      current_date: String(dayjs().subtract(1, "day")),
+    },
+    {
+      label: "Products Sold",
+      post_data: Math.random() * 10000000,
+      current_data: Math.random() * 10000000,
+      post_date: String(dayjs()),
+      current_date: String(dayjs().subtract(1, "day")),
+    },
+  ];
+
   return (
     <div>
       <Container maxWidth="xl" sx={{ mt: "1rem" }}>
@@ -20,18 +37,13 @@ const Overview = () => {
           <Header />
         </Box>
         <Grid container columnSpacing={2} rowSpacing={2}>
-          <Grid item xs={12} md={3} sm={6}>
-            <SummarySale />
-          </Grid>
-          <Grid item xs={12} md={3} sm={6}>
-            <ProductsSold />
-          </Grid>
-          <Grid item xs={12} md={3} sm={6}>
-            {/* <SummarySale /> */}
-          </Grid>
-          <Grid item xs={12} md={3} sm={6}>
-            {/* <SummarySale /> */}
-          </Grid>
+          {data.map((data_data, index) => {
+            return (
+              <Grid key={index} item xs={12} md={3} sm={6}>
+                <GraphCard data={data_data} />
+              </Grid>
+            );
+          })}
         </Grid>
       </Container>
     </div>

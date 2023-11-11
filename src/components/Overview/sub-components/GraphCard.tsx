@@ -1,8 +1,9 @@
-// TODO: แสดงยอดขายรวม
 import { Box, Grid, Stack, Typography } from "@mui/material";
+import { intToString } from "../../../context/overview/overview-contaxt-function";
+import { Line } from "react-chartjs-2";
 import {
-  KeyboardDoubleArrowUp,
   KeyboardDoubleArrowDown,
+  KeyboardDoubleArrowUp,
 } from "@mui/icons-material";
 import {
   Chart as ChartJS,
@@ -13,8 +14,6 @@ import {
   Tooltip,
   Filler,
 } from "chart.js";
-import { Line } from "react-chartjs-2";
-import { intToString } from "../../context/overview/overview-contaxt-function";
 
 ChartJS.register(
   CategoryScale,
@@ -25,10 +24,19 @@ ChartJS.register(
   Filler
 );
 
-const ProductsSold = () => {
-  const post_profit = Math.random() * 10000000;
-  const current_profit = Math.random() * 10000000;
-  console.log(typeof current_profit);
+interface GraphCardProps {
+  data: {
+    label: string;
+    post_data: number;
+    current_data: number;
+    post_date: string;
+    current_date: string;
+  };
+}
+
+const graphCard = (props: GraphCardProps) => {
+  const post_profit = props.data.post_data;
+  const current_profit = props.data.current_data;
 
   const total_profit_persent = (current_profit / post_profit - 1) * 100;
 
@@ -54,8 +62,6 @@ const ProductsSold = () => {
     "July",
   ];
 
-  console.log(labels.map(() => Math.random() * 1000));
-
   const data = {
     labels,
     datasets: [
@@ -67,7 +73,6 @@ const ProductsSold = () => {
       },
     ],
   };
-
   return (
     <Grid
       container
@@ -83,7 +88,7 @@ const ProductsSold = () => {
       <Grid item xs={12} mb={1}>
         <Stack direction={"row"} alignItems={"center"}>
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-            Products Sold
+            {props.data.label}
           </Typography>
           <Stack
             ml={1}
@@ -97,11 +102,8 @@ const ProductsSold = () => {
             alignItems={"center"}
             flexDirection={"row"}
           >
-            <Typography variant="subtitle1">
-              {total_profit_persent.toLocaleString(undefined, {
-                maximumFractionDigits: 2,
-              })}
-              %
+            <Typography variant="subtitle1" pl={0.5}>
+              {intToString(Number(Number(total_profit_persent).toFixed(2)))}%
             </Typography>
             <Box display={{ xs: "none", md: "flex" }}>
               {total_profit_persent > 0 ? (
@@ -114,21 +116,23 @@ const ProductsSold = () => {
         </Stack>
       </Grid>
       <Grid item xs={12} mb={1}>
-        <Typography variant="h4">{intToString(current_profit)}</Typography>
-        <Typography variant="h5" color={"grey.400"}>
-          {intToString(post_profit)}
-        </Typography>
+        <Stack direction={"row"} alignItems={"end"} spacing={1}>
+          <Typography variant="h4">{intToString(current_profit)}</Typography>
+          <Typography variant="h5" color={"grey.500"}>
+            {intToString(post_profit)}
+          </Typography>
+        </Stack>
       </Grid>
       <Grid item xs={12} mb={1}>
         <Line options={options} data={data} />
       </Grid>
       <Grid item xs={12}>
         <Typography variant="body1" textAlign={"right"}>
-          {`Jan 01, 2023 - March 01, 2023`}
+          {props.data.post_date}
         </Typography>
       </Grid>
     </Grid>
   );
 };
 
-export default ProductsSold;
+export default graphCard;

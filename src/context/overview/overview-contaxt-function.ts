@@ -1,5 +1,5 @@
 export const intToString = (num: number) => {
-  const numToString = num.toString().replace(/[^0-9.]/g, "");
+  const numToString = String(num).replace(/[^0-9.]/g, "");
   if (Number(numToString) < 1000) {
     return numToString;
   }
