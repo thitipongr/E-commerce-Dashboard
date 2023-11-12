@@ -12,8 +12,8 @@ import { Line } from "react-chartjs-2";
 import {
   KeyboardDoubleArrowDown,
   KeyboardDoubleArrowUp,
-  PlayCircleFilledWhiteSharp,
-  StopCircleSharp,
+  Start,
+  Stop,
 } from "@mui/icons-material";
 import dayjs from "dayjs";
 
@@ -68,10 +68,18 @@ const GraphCard = (props: GraphCardProps) => {
     ],
   };
 
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(
+    localStorage.getItem(`${props.data.label}-flag`) === "true"
+      ? true
+      : false || false
+  );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
+    localStorage.setItem(
+      `${props.data.label}-flag`,
+      String(event.target.checked)
+    );
   };
 
   return (
@@ -170,13 +178,13 @@ const GraphCard = (props: GraphCardProps) => {
             <Stack alignItems={"end"}>
               <Typography variant="body1">
                 <Stack direction={"row"}>
-                  <PlayCircleFilledWhiteSharp />
+                  <Start />
                   {dayjs(props.data.current_date).format("DD/MM/YYYY")}
                 </Stack>
               </Typography>
               <Typography variant="body1">
                 <Stack direction={"row"}>
-                  <StopCircleSharp />
+                  <Stop />
                   {dayjs(props.data.post_date).format("DD/MM/YYYY")}
                 </Stack>
               </Typography>

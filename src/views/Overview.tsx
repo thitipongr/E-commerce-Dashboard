@@ -25,7 +25,7 @@ import dayjs from "dayjs";
 // ///TODO: แสดงยอดขายรวม, จำนวนสินค้าที่ขายได้, จำนวนลูกค้าใหม่, และอัตราการเติบโตเมื่อเทียบกับเดือนที่แล้ว
 // ///TODO: แสดงยอดขายรวม
 // ///TODO: จำนวนสินค้าที่ขายได้
-// TODO: จำนวนลูกค้าใหม่
+// ///TODO: จำนวนลูกค้าใหม่
 // TODO: อัตราการเติบโตเมื่อเทียบกับเดือนที่แล้ว
 // TODO: กราฟแสดงยอดขายในแต่ละวันของเดือนปัจจุบัน
 // TODO: รายการสินค้าขายดี 5 อันดับแรก
@@ -41,6 +41,20 @@ const Overview = () => {
     },
     {
       label: "Products Sold",
+      post_data: Math.random() * 10000000,
+      current_data: Math.random() * 10000000,
+      post_date: String(dayjs()),
+      current_date: String(dayjs().subtract(1, "day").startOf("day")),
+    },
+    {
+      label: "New Customer",
+      post_data: Math.random() * 10000000,
+      current_data: Math.random() * 10000000,
+      post_date: String(dayjs()),
+      current_date: String(dayjs().subtract(1, "day").startOf("day")),
+    },
+    {
+      label: "Growth Rate",
       post_data: Math.random() * 10000000,
       current_data: Math.random() * 10000000,
       post_date: String(dayjs()),
