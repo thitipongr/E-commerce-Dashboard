@@ -1,9 +1,19 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { useState, ChangeEvent } from "react";
+import {
+  Box,
+  FormControlLabel,
+  Grid,
+  Stack,
+  Switch,
+  Typography,
+} from "@mui/material";
 import { intToString } from "../../../context/overview/overview-contaxt-function";
 import { Line } from "react-chartjs-2";
 import {
   KeyboardDoubleArrowDown,
   KeyboardDoubleArrowUp,
+  PlayCircleFilledWhiteSharp,
+  StopCircleSharp,
 } from "@mui/icons-material";
 import dayjs from "dayjs";
 
@@ -17,7 +27,7 @@ interface GraphCardProps {
   };
 }
 
-const graphCard = (props: GraphCardProps) => {
+const GraphCard = (props: GraphCardProps) => {
   const post_profit = props.data.post_data;
   const current_profit = props.data.current_data;
 
@@ -33,6 +43,7 @@ const graphCard = (props: GraphCardProps) => {
       y: { display: false },
     },
     tension: 0.4,
+    maintainAspectRatio: false,
   };
 
   const labels = [
@@ -56,6 +67,13 @@ const graphCard = (props: GraphCardProps) => {
       },
     ],
   };
+
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setChecked(event.target.checked);
+  };
+
   return (
     <Grid
       container
@@ -69,33 +87,62 @@ const graphCard = (props: GraphCardProps) => {
       }}
     >
       <Grid item xs={12} mb={1}>
-        <Stack direction={"row"} alignItems={"center"}>
+        <Stack
+          direction={"row"}
+          alignItems={"center"}
+          justifyContent={"space-between"}
+        >
           <Typography variant="h6" sx={{ fontWeight: "bold" }}>
             {props.data.label}
           </Typography>
-          <Stack
-            ml={1}
-            p={0.5}
-            border={"2px solid"}
-            borderRadius={1}
-            borderColor={
-              total_profit_persent > 0 ? "success.dark" : "error.dark"
+
+          <FormControlLabel
+            sx={{ margin: "unset" }}
+            control={
+              <Switch
+                sx={{ display: "none" }}
+                checked={checked}
+                onChange={handleChange}
+              />
             }
-            bgcolor={total_profit_persent > 0 ? "success.light" : "error.light"}
-            alignItems={"center"}
-            flexDirection={"row"}
-          >
-            <Typography variant="subtitle1" pl={0.5} mr={{ xs: "3px", md: 0 }}>
-              {intToString(Number(Number(total_profit_persent).toFixed(2)))}%
-            </Typography>
-            <Box display={{ xs: "none", md: "flex" }}>
-              {total_profit_persent > 0 ? (
-                <KeyboardDoubleArrowUp />
-              ) : (
-                <KeyboardDoubleArrowDown />
-              )}
-            </Box>
-          </Stack>
+            label={
+              <Stack
+                ml={1}
+                p={0.5}
+                border={"2px solid"}
+                borderRadius={1}
+                borderColor={
+                  total_profit_persent > 0 ? "success.dark" : "error.dark"
+                }
+                bgcolor={total_profit_persent > 0 ? "#4caf5050" : "#ef535050"}
+                alignItems={"center"}
+                flexDirection={"row"}
+                sx={{
+                  "&:hover": {
+                    bgcolor: `${
+                      total_profit_persent > 0 ? "#4caf5090" : "#ef535090"
+                    }`,
+                  },
+                }}
+              >
+                <Typography
+                  variant="subtitle1"
+                  pl={0.5}
+                  mr={{ xs: "3px", md: 0 }}
+                >
+                  {intToString(Number(Number(total_profit_persent).toFixed(2)))}
+                  %
+                </Typography>
+                <Box display={{ xs: "none", md: "flex" }}>
+                  {total_profit_persent > 0 ? (
+                    <KeyboardDoubleArrowUp />
+                  ) : (
+                    <KeyboardDoubleArrowDown />
+                  )}
+                </Box>
+              </Stack>
+            }
+          />
         </Stack>
       </Grid>
       <Grid item xs={12} mb={1}>
@@ -106,19 +153,39 @@ const graphCard = (props: GraphCardProps) => {
           </Typography>
         </Stack>
       </Grid>
-      <Grid item xs={12} mb={1}>
-        <Line options={options} data={data} />
-      </Grid>
       <Grid item xs={12}>
-        <Typography variant="body1" textAlign={"right"}>
-          From: {dayjs(props.data.current_date).format("DD/MM/YYYY - HH:mm:ss")}
-        </Typography>
-        <Typography variant="body1" textAlign={"right"}>
-          To: {dayjs(props.data.post_date).format("DD/MM/YYYY - HH:mm:ss")}
-        </Typography>
+        <Stack direction={"row"} justifyContent={"space-between"}>
+          <Box width={"100%"}>
+            {checked ? (
+              <Line
+                width={100}
+                height={48}
+                options={options}
+                data={data}
+                id={`${props.data.label}-line-graph`}
+              />
+            ) : null}
+          </Box>
+          <Box>
+            <Stack alignItems={"end"}>
+              <Typography variant="body1">
+                <Stack direction={"row"}>
+                  <PlayCircleFilledWhiteSharp />
+                  {dayjs(props.data.current_date).format("DD/MM/YYYY")}
+                </Stack>
+              </Typography>
+              <Typography variant="body1">
+                <Stack direction={"row"}>
+                  <StopCircleSharp />
+                  {dayjs(props.data.post_date).format("DD/MM/YYYY")}
+                </Stack>
+              </Typography>
+            </Stack>
+          </Box>
+        </Stack>
       </Grid>
     </Grid>
   );
 };
 
-export default graphCard;
+export default GraphCard;
