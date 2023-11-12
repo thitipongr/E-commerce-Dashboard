@@ -5,24 +5,7 @@ import {
   KeyboardDoubleArrowDown,
   KeyboardDoubleArrowUp,
 } from "@mui/icons-material";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Filler,
-} from "chart.js";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Tooltip,
-  Filler
-);
+import dayjs from "dayjs";
 
 interface GraphCardProps {
   data: {
@@ -102,7 +85,7 @@ const graphCard = (props: GraphCardProps) => {
             alignItems={"center"}
             flexDirection={"row"}
           >
-            <Typography variant="subtitle1" pl={0.5}>
+            <Typography variant="subtitle1" pl={0.5} mr={{ xs: "3px", md: 0 }}>
               {intToString(Number(Number(total_profit_persent).toFixed(2)))}%
             </Typography>
             <Box display={{ xs: "none", md: "flex" }}>
@@ -128,7 +111,10 @@ const graphCard = (props: GraphCardProps) => {
       </Grid>
       <Grid item xs={12}>
         <Typography variant="body1" textAlign={"right"}>
-          {props.data.post_date}
+          From: {dayjs(props.data.current_date).format("DD/MM/YYYY - HH:mm:ss")}
+        </Typography>
+        <Typography variant="body1" textAlign={"right"}>
+          To: {dayjs(props.data.post_date).format("DD/MM/YYYY - HH:mm:ss")}
         </Typography>
       </Grid>
     </Grid>

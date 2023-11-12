@@ -1,6 +1,24 @@
 import Header from "../components/Overview/Header";
 import { Box, Container, Grid } from "@mui/material";
 import GraphCard from "../components/Overview/sub-components/GraphCard";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Filler,
+} from "chart.js";
+
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Filler
+);
 import dayjs from "dayjs";
 
 // * 1. หน้า Overview:
@@ -19,14 +37,14 @@ const Overview = () => {
       post_data: Math.random() * 10000000,
       current_data: Math.random() * 10000000,
       post_date: String(dayjs()),
-      current_date: String(dayjs().subtract(1, "day")),
+      current_date: String(dayjs().subtract(1, "day").startOf("day")),
     },
     {
       label: "Products Sold",
       post_data: Math.random() * 10000000,
       current_data: Math.random() * 10000000,
       post_date: String(dayjs()),
-      current_date: String(dayjs().subtract(1, "day")),
+      current_date: String(dayjs().subtract(1, "day").startOf("day")),
     },
   ];
 
