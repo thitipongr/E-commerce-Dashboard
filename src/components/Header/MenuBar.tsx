@@ -38,7 +38,7 @@ const MenuBar = () => {
   };
 
   return (
-    <AppBar position="sticky" sx={{ boxShadow: 0 }}>
+    <AppBar position="fixed" sx={{ boxShadow: 0 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link className="react-link" to={"/"}>

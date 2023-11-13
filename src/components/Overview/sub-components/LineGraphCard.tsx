@@ -25,6 +25,7 @@ interface GraphCardProps {
     post_date: string;
     current_date: string;
   };
+  graphHeight: number;
 }
 
 const GraphCard = (props: GraphCardProps) => {
@@ -141,7 +142,7 @@ const GraphCard = (props: GraphCardProps) => {
                   {intToString(Number(Number(total_profit_persent).toFixed(2)))}
                   %
                 </Typography>
-                <Box display={{ xs: "none", md: "flex" }}>
+                <Box display={{ xs: "none", sm: "flex" }}>
                   {total_profit_persent > 0 ? (
                     <KeyboardDoubleArrowUp />
                   ) : (
@@ -162,7 +163,7 @@ const GraphCard = (props: GraphCardProps) => {
         </Stack>
       </Grid>
       <Grid item xs={12}>
-        <Stack direction={"row"} justifyContent={"space-between"}>
+        <Stack direction={"row"} minHeight={1}>
           <Box width={"100%"}>
             {checked ? (
               <Line
@@ -175,7 +176,18 @@ const GraphCard = (props: GraphCardProps) => {
             ) : null}
           </Box>
           <Box>
-            <Stack alignItems={"end"}>
+            <Stack
+              alignItems={"end"}
+              justifyContent={"center"}
+              sx={{
+                height: {
+                  sm: `${
+                    props.graphHeight - 40 - 41.98 - 16 - 16 - 2 - 16 - 16
+                  }px`,
+                  // header - summary - pt - pb - border - mt - mb
+                },
+              }}
+            >
               <Stack direction={"row"}>
                 <Start />
                 {dayjs(props.data.post_date).format("DD/MM/YYYY")}

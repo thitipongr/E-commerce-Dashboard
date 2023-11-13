@@ -1,5 +1,6 @@
+import { useEffect, useState, useRef } from "react";
 import Header from "../components/Overview/Header";
-import { Box, Container, Grid } from "@mui/material";
+import { Box, Container, Grid, Stack } from "@mui/material";
 import LineGraphCard from "../components/Overview/sub-components/LineGraphCard";
 import {
   Chart as ChartJS,
@@ -71,26 +72,53 @@ const Overview = () => {
     },
   };
 
+  const [graphHeight, setGraphHeight] = useState(0);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (ref.current != null) {
+      setGraphHeight(ref.current.clientHeight);
+    }
+  }, []);
+
+  console.log(graphHeight);
+
   return (
-    <Container maxWidth="xl" sx={{ mt: "1rem" }}>
-      <Box mb={"1rem"}>
-        <Header />
-      </Box>
-      <Grid container columnSpacing={2} rowSpacing={2}>
-        {data.first_section_bundle.map((data_data, index) => {
-          return (
-            <Grid key={index} item xs={12} md={3} sm={6}>
-              <LineGraphCard data={data_data} />
+    <Container
+      maxWidth="xl"
+      sx={{ height: "100vh", pt: { xs: "64px", sm: "90px" } }}
+    >
+      <Stack
+        direction={"column"}
+        height={"100%"}
+        justifyContent={"space-between"}
+      >
+        <Box mb={"1rem"}>
+          <Header />
+        </Box>
+        <Box>
+          <Grid container columnSpacing={2} rowSpacing={2}>
+            {data.first_section_bundle.map((data_data, index) => {
+              return (
+                <Grid key={index} item xs={12} md={3} sm={6}>
+                  <LineGraphCard data={data_data} graphHeight={0} />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Box>
+        <Box height={"100%"} mt={"1rem"} id="monthly-sales-section" ref={ref}>
+          <Grid container columnSpacing={2} rowSpacing={2}>
+            <Grid item xs={12} sm={9}>
+              <LineGraphCard
+                data={data.second_section}
+                graphHeight={graphHeight}
+              />
             </Grid>
-          );
-        })}
-        <Grid item xs={12}>
-          <LineGraphCard data={data.second_section} />
-        </Grid>
-        <Grid item xs={12}>
-          {/* <GraphCard data={data.first_section_bundle[0]} /> */}
-        </Grid>
-      </Grid>
+            <Grid item xs={12} sm={3}></Grid>
+          </Grid>
+        </Box>
+      </Stack>
     </Container>
   );
 };
