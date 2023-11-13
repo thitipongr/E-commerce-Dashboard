@@ -17,7 +17,7 @@ import {
 } from "@mui/icons-material";
 import dayjs from "dayjs";
 
-interface GraphCardProps {
+type GraphCardProps = {
   data: {
     label: string;
     post_data: number;
@@ -26,11 +26,13 @@ interface GraphCardProps {
     current_date: string;
   };
   graphHeight: number;
-}
+};
 
 const GraphCard = (props: GraphCardProps) => {
-  const post_profit = props.data.post_data;
-  const current_profit = props.data.current_data;
+  // const post_profit = props.data.post_data;
+  // const current_profit = props.data.current_data;
+  const post_profit = 555555;
+  const current_profit = 555555;
 
   const total_profit_persent = (current_profit / post_profit - 1) * 100;
 
@@ -142,7 +144,7 @@ const GraphCard = (props: GraphCardProps) => {
                   {intToString(Number(Number(total_profit_persent).toFixed(2)))}
                   %
                 </Typography>
-                <Box display={{ xs: "none", sm: "flex" }}>
+                <Box display={{ xs: "none", md: "flex" }}>
                   {total_profit_persent > 0 ? (
                     <KeyboardDoubleArrowUp />
                   ) : (
@@ -155,16 +157,55 @@ const GraphCard = (props: GraphCardProps) => {
         </Stack>
       </Grid>
       <Grid item xs={12} mb={1}>
-        <Stack direction={"row"} alignItems={"end"} spacing={1}>
-          <Typography variant="h4">{intToString(current_profit)}</Typography>
-          <Typography variant="h5" color={"grey.500"}>
-            {intToString(post_profit)}
-          </Typography>
+        <Stack direction={"row"} justifyContent={"space-between"}>
+          <Stack direction={"row"} alignItems={"end"} spacing={1}>
+            <Typography variant="h4">{intToString(current_profit)}</Typography>
+            <Typography variant="h5" color={"grey.500"}>
+              {intToString(post_profit)}
+            </Typography>
+          </Stack>
+          {props.data.label === "Monthly Sales" ? (
+            <Box display={{ xs: "none", sm: "flex" }}>
+              <Stack alignItems={"end"} justifyContent={"end"}>
+                <Stack direction={"row"}>
+                  <Start />
+                  {dayjs(props.data.post_date).format("DD/MM/YYYY")}
+                </Stack>
+                <Stack direction={"row"}>
+                  <Stop />
+                  {dayjs(props.data.current_date).format("DD/MM/YYYY")}
+                </Stack>
+              </Stack>
+            </Box>
+          ) : (
+            <Box display={{ xs: "none" }}>
+              <Stack alignItems={"end"} justifyContent={"end"}>
+                <Stack direction={"row"}>
+                  <Start />
+                  {dayjs(props.data.post_date).format("DD/MM/YYYY")}
+                </Stack>
+                <Stack direction={"row"}>
+                  <Stop />
+                  {dayjs(props.data.current_date).format("DD/MM/YYYY")}
+                </Stack>
+              </Stack>
+            </Box>
+          )}
         </Stack>
       </Grid>
       <Grid item xs={12}>
-        <Stack direction={"row"} minHeight={1}>
-          <Box width={"100%"}>
+        <Stack direction={"row"}>
+          <Box
+            width={"100%"}
+            sx={{
+              height: {
+                sm: `${
+                  props.graphHeight - 40 - 41.98 - 16 - 16 - 2 - 16 - 16
+                }px`,
+                // header - summary - pt - pb - border - mt - mb
+              },
+            }}
+          >
             {checked ? (
               <Line
                 width={100}
@@ -175,29 +216,33 @@ const GraphCard = (props: GraphCardProps) => {
               />
             ) : null}
           </Box>
-          <Box>
-            <Stack
-              alignItems={"end"}
-              justifyContent={"center"}
-              sx={{
-                height: {
-                  sm: `${
-                    props.graphHeight - 40 - 41.98 - 16 - 16 - 2 - 16 - 16
-                  }px`,
-                  // header - summary - pt - pb - border - mt - mb
-                },
-              }}
-            >
-              <Stack direction={"row"}>
-                <Start />
-                {dayjs(props.data.post_date).format("DD/MM/YYYY")}
+          {props.data.label === "Monthly Sales" ? (
+            <Box display={{ xs: "flex", sm: "none" }}>
+              <Stack alignItems={"end"} justifyContent={"end"}>
+                <Stack direction={"row"}>
+                  <Start />
+                  {dayjs(props.data.post_date).format("DD/MM/YYYY")}
+                </Stack>
+                <Stack direction={"row"}>
+                  <Stop />
+                  {dayjs(props.data.current_date).format("DD/MM/YYYY")}
+                </Stack>
               </Stack>
-              <Stack direction={"row"}>
-                <Stop />
-                {dayjs(props.data.current_date).format("DD/MM/YYYY")}
+            </Box>
+          ) : (
+            <Box display={{ xs: "flex" }}>
+              <Stack alignItems={"end"} justifyContent={"end"}>
+                <Stack direction={"row"}>
+                  <Start />
+                  {dayjs(props.data.post_date).format("DD/MM/YYYY")}
+                </Stack>
+                <Stack direction={"row"}>
+                  <Stop />
+                  {dayjs(props.data.current_date).format("DD/MM/YYYY")}
+                </Stack>
               </Stack>
-            </Stack>
-          </Box>
+            </Box>
+          )}
         </Stack>
       </Grid>
     </Grid>
