@@ -176,18 +176,14 @@ const GraphCard = (props: GraphCardProps) => {
           </Box>
           <Box>
             <Stack alignItems={"end"}>
-              <Typography variant="body1">
                 <Stack direction={"row"}>
                   <Start />
                   {dayjs(props.data.post_date).format("DD/MM/YYYY")}
                 </Stack>
-              </Typography>
-              <Typography variant="body1">
                 <Stack direction={"row"}>
                   <Stop />
                   {dayjs(props.data.current_date).format("DD/MM/YYYY")}
                 </Stack>
-              </Typography>
             </Stack>
           </Box>
         </Stack>

@@ -1,6 +1,6 @@
 import Header from "../components/Overview/Header";
 import { Box, Container, Grid } from "@mui/material";
-import GraphCard from "../components/Overview/sub-components/GraphCard";
+import LineGraphCard from "../components/Overview/sub-components/LineGraphCard";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -80,12 +80,12 @@ const Overview = () => {
         {data.first_section_bundle.map((data_data, index) => {
           return (
             <Grid key={index} item xs={12} md={3} sm={6}>
-              <GraphCard data={data_data} />
+              <LineGraphCard data={data_data} />
             </Grid>
           );
         })}
         <Grid item xs={12}>
-          <GraphCard data={data.second_section} />
+          <LineGraphCard data={data.second_section} />
         </Grid>
         <Grid item xs={12}>
           {/* <GraphCard data={data.first_section_bundle[0]} /> */}
