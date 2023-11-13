@@ -69,9 +69,9 @@ const GraphCard = (props: GraphCardProps) => {
   };
 
   const [checked, setChecked] = useState(
-    localStorage.getItem(`${props.data.label}-flag`) === "true"
-      ? true
-      : false || true
+    localStorage.getItem(`${props.data.label}-flag`) === "false"
+      ? false
+      : true || true
   );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -176,14 +176,14 @@ const GraphCard = (props: GraphCardProps) => {
           </Box>
           <Box>
             <Stack alignItems={"end"}>
-                <Stack direction={"row"}>
-                  <Start />
-                  {dayjs(props.data.post_date).format("DD/MM/YYYY")}
-                </Stack>
-                <Stack direction={"row"}>
-                  <Stop />
-                  {dayjs(props.data.current_date).format("DD/MM/YYYY")}
-                </Stack>
+              <Stack direction={"row"}>
+                <Start />
+                {dayjs(props.data.post_date).format("DD/MM/YYYY")}
+              </Stack>
+              <Stack direction={"row"}>
+                <Stop />
+                {dayjs(props.data.current_date).format("DD/MM/YYYY")}
+              </Stack>
             </Stack>
           </Box>
         </Stack>
