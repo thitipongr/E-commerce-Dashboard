@@ -29,10 +29,8 @@ type GraphCardProps = {
 };
 
 const GraphCard = (props: GraphCardProps) => {
-  // const post_profit = props.data.post_data;
-  // const current_profit = props.data.current_data;
-  const post_profit = 555555;
-  const current_profit = 555555;
+  const post_profit = props.data.post_data;
+  const current_profit = props.data.current_data;
 
   const total_profit_persent = (current_profit / post_profit - 1) * 100;
 
@@ -140,9 +138,14 @@ const GraphCard = (props: GraphCardProps) => {
                   variant="subtitle1"
                   pl={0.5}
                   mr={{ xs: "3px", md: 0 }}
+                  display={"inline"}
                 >
                   {intToString(Number(Number(total_profit_persent).toFixed(2)))}
-                  %
+                  <Typography
+                    display={{ xs: "inline", sm: "none", md: "inline" }}
+                  >
+                    %
+                  </Typography>
                 </Typography>
                 <Box display={{ xs: "none", md: "flex" }}>
                   {total_profit_persent > 0 ? (
@@ -169,11 +172,11 @@ const GraphCard = (props: GraphCardProps) => {
               <Stack alignItems={"end"} justifyContent={"end"}>
                 <Stack direction={"row"}>
                   <Start />
-                  {dayjs(props.data.post_date).format("DD/MM/YYYY")}
+                  {dayjs(props.data.post_date).format("DD/MM/YY")}
                 </Stack>
                 <Stack direction={"row"}>
                   <Stop />
-                  {dayjs(props.data.current_date).format("DD/MM/YYYY")}
+                  {dayjs(props.data.current_date).format("DD/MM/YY")}
                 </Stack>
               </Stack>
             </Box>
@@ -182,11 +185,11 @@ const GraphCard = (props: GraphCardProps) => {
               <Stack alignItems={"end"} justifyContent={"end"}>
                 <Stack direction={"row"}>
                   <Start />
-                  {dayjs(props.data.post_date).format("DD/MM/YYYY")}
+                  {dayjs(props.data.post_date).format("DD/MM/YY")}
                 </Stack>
                 <Stack direction={"row"}>
                   <Stop />
-                  {dayjs(props.data.current_date).format("DD/MM/YYYY")}
+                  {dayjs(props.data.current_date).format("DD/MM/YY")}
                 </Stack>
               </Stack>
             </Box>
@@ -200,7 +203,7 @@ const GraphCard = (props: GraphCardProps) => {
             sx={{
               height: {
                 sm: `${
-                  props.graphHeight - 40 - 41.98 - 16 - 16 - 2 - 16 - 16
+                  props.graphHeight - 38.212 - 47.986 - 16 - 16 - 2 - 16 - 16
                 }px`,
                 // header - summary - pt - pb - border - mt - mb
               },
@@ -221,11 +224,11 @@ const GraphCard = (props: GraphCardProps) => {
               <Stack alignItems={"end"} justifyContent={"end"}>
                 <Stack direction={"row"}>
                   <Start />
-                  {dayjs(props.data.post_date).format("DD/MM/YYYY")}
+                  {dayjs(props.data.post_date).format("DD/MM/YY")}
                 </Stack>
                 <Stack direction={"row"}>
                   <Stop />
-                  {dayjs(props.data.current_date).format("DD/MM/YYYY")}
+                  {dayjs(props.data.current_date).format("DD/MM/YY")}
                 </Stack>
               </Stack>
             </Box>
@@ -234,11 +237,11 @@ const GraphCard = (props: GraphCardProps) => {
               <Stack alignItems={"end"} justifyContent={"end"}>
                 <Stack direction={"row"}>
                   <Start />
-                  {dayjs(props.data.post_date).format("DD/MM/YYYY")}
+                  {dayjs(props.data.post_date).format("DD/MM/YY")}
                 </Stack>
                 <Stack direction={"row"}>
                   <Stop />
-                  {dayjs(props.data.current_date).format("DD/MM/YYYY")}
+                  {dayjs(props.data.current_date).format("DD/MM/YY")}
                 </Stack>
               </Stack>
             </Box>

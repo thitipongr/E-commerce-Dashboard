@@ -77,8 +77,8 @@ const Header = () => {
 
   return (
     <Stack
-      direction={{ xs: "column", sm: "row" }}
-      justifyContent={{ xs: "center", sm: "space-between" }}
+      direction={{ xs: "column", md: "row" }}
+      justifyContent={{ xs: "center", md: "space-between" }}
       alignItems="center"
       spacing={1}
       // mb={4}
@@ -88,7 +88,7 @@ const Header = () => {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Stack
             direction={{ xs: "column", sm: "row" }}
-            spacing={{ xs: "1rem", sm: "8px" }}
+            spacing={{ xs: "1rem", md: "8px" }}
           >
             <DatePicker
               label="Start Date"

@@ -21,15 +21,7 @@ ChartJS.register(
   Filler
 );
 import dayjs from "dayjs";
-
-// * 1. หน้า Overview:
-// ///TODO: แสดงยอดขายรวม, จำนวนสินค้าที่ขายได้, จำนวนลูกค้าใหม่, และอัตราการเติบโตเมื่อเทียบกับเดือนที่แล้ว
-// ///TODO: แสดงยอดขายรวม
-// ///TODO: จำนวนสินค้าที่ขายได้
-// ///TODO: จำนวนลูกค้าใหม่
-// ///TODO: อัตราการเติบโตเมื่อเทียบกับเดือนที่แล้ว
-// TODO: กราฟแสดงยอดขายในแต่ละวันของเดือนปัจจุบัน
-// TODO: รายการสินค้าขายดี 5 อันดับแรก
+import DataTable from "../components/Overview/sub-components/DataTable";
 
 const Overview = () => {
   const data = {
@@ -72,21 +64,22 @@ const Overview = () => {
     },
   };
 
-  const [graphHeight, setGraphHeight] = useState(0);
+  const [elementHeight, setElementHeight] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (ref.current != null) {
-      setGraphHeight(ref.current.clientHeight);
+      setElementHeight(ref.current.clientHeight);
     }
   }, []);
-
-  console.log(graphHeight);
 
   return (
     <Container
       maxWidth="xl"
-      sx={{ height: "100vh", pt: { xs: "64px", sm: "90px" } }}
+      sx={{
+        height: "100vh",
+        pt: { xs: "64px", sm: "72px", md: "90px" },
+      }}
     >
       <Stack
         direction={"column"}
@@ -109,13 +102,18 @@ const Overview = () => {
         </Box>
         <Box height={"100%"} mt={"1rem"} id="monthly-sales-section" ref={ref}>
           <Grid container columnSpacing={2} rowSpacing={2}>
-            <Grid item xs={12} sm={9}>
+            <Grid item xs={12} sm={8}>
               <LineGraphCard
                 data={data.second_section}
-                graphHeight={graphHeight}
+                graphHeight={elementHeight}
               />
             </Grid>
-            <Grid item xs={12} sm={3}></Grid>
+            <Grid item xs={12} sm={4}>
+              <DataTable
+                data={{ label: "Top Sales" }}
+                elementHeight={elementHeight}
+              />
+            </Grid>
           </Grid>
         </Box>
       </Stack>
