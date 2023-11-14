@@ -4,10 +4,11 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 type SalesReportDataTableProps = {
   rows: {
     id: number;
-    productName: string;
-    category: string;
-    quantity: number;
-    quantityState: number;
+    customerName: string;
+    phone: string;
+    email: string;
+    subDate: string;
+    sumPaid: number;
   }[];
   setColumnMinHeight: number;
   columns: GridColDef[];
@@ -26,7 +27,7 @@ const CustomerDataTable = (props: SalesReportDataTableProps) => {
           sorting: {
             sortModel: [
               {
-                field: "id",
+                field: "sumPaid",
                 sort: "desc",
               },
             ],

@@ -1,7 +1,19 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Grid,
+  Input,
+  Stack,
+  Typography,
+} from "@mui/material";
 import SalesReportDataTable from "../components/SalesReport/SalesReportDataTable";
 import { useEffect, useRef, useState } from "react";
-import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
+import {
+  GridColDef,
+  GridRenderCellParams,
+  GridValueGetterParams,
+} from "@mui/x-data-grid";
 import data from "../assets/mock/SalesReport/SaleReport.json";
 import { FindInPage } from "@mui/icons-material";
 
@@ -18,7 +30,7 @@ const SalesReport = () => {
   const rows = data;
 
   const setColumnMinWidth =
-    (elementDimension[0] - 70) / (Object.keys(rows[0]).length + 1);
+    (elementDimension[0] - 130) / (Object.keys(rows[0]).length + 1);
   const setColumnMinHeight = elementDimension[1] - 64;
 
   const columns: GridColDef[] = [
@@ -110,6 +122,10 @@ const SalesReport = () => {
         const [day, month, year] = params.row.orderDate.split("/");
         return new Date(`${year}-${month}-${day}`);
       },
+      renderCell: (params: GridRenderCellParams) => {
+        const [day, month, year] = params.row.orderDate.split("/");
+        return `${day}/${month}/${year}`;
+      },
     },
     {
       field: "price",
@@ -128,11 +144,34 @@ const SalesReport = () => {
   return (
     <Stack sx={{ height: "calc(100vh - 90px);" }} ref={ref}>
       <Box>
-        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-          Sales Report
-        </Typography>
+        <Stack
+          direction={"row"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+        >
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Sales Report
+          </Typography>
+
+          <ButtonGroup
+            size="small"
+            sx={{
+              ".MuiButtonGroup-grouped": {
+                borderColor: "#bdbdbd",
+                color: "black",
+              },
+            }}
+          >
+            <Input
+              placeholder="Find"
+              sx={{ width: { xs: "40px", sm: "200px" } }}
+            />
+            <Button>Add</Button>
+            <Button>Import</Button>
+          </ButtonGroup>
+        </Stack>
       </Box>
-      <Box mt={"1rem"} height={"calc(100vh - 32px);"} id="xxxxx">
+      <Box mt={"1rem"} height={"calc(100vh - 32px);"}>
         <Grid container columnSpacing={2} rowSpacing={2}>
           <Grid item xs={12}>
             <SalesReportDataTable

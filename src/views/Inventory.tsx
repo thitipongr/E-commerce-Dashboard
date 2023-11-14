@@ -1,4 +1,12 @@
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  ButtonGroup,
+  Grid,
+  Input,
+  Stack,
+  Typography,
+} from "@mui/material";
 import InventoryDataTable from "../components/Inventory/InventoryDataTable";
 import { useEffect, useRef, useState } from "react";
 import { GridColDef, GridValueGetterParams } from "@mui/x-data-grid";
@@ -88,11 +96,33 @@ const Inventory = () => {
   return (
     <Stack sx={{ height: "calc(100vh - 90px);" }} ref={ref}>
       <Box>
-        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-          Sales Report
-        </Typography>
+        <Stack
+          direction={"row"}
+          justifyContent={"space-between"}
+          alignItems={"center"}
+        >
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Inventory
+          </Typography>
+          <ButtonGroup
+            size="small"
+            sx={{
+              ".MuiButtonGroup-grouped": {
+                borderColor: "#bdbdbd",
+                color: "black",
+              },
+            }}
+          >
+            <Input
+              placeholder="Find"
+              sx={{ width: { xs: "40px", sm: "200px" } }}
+            />
+            <Button>Add</Button>
+            <Button>Import</Button>
+          </ButtonGroup>
+        </Stack>
       </Box>
-      <Box mt={"1rem"} height={"calc(100vh - 32px);"} id="xxxxx">
+      <Box mt={"1rem"} height={"calc(100vh - 32px);"}>
         <Grid container columnSpacing={2} rowSpacing={2}>
           <Grid item xs={12}>
             <InventoryDataTable

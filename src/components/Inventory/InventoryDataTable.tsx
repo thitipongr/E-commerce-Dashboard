@@ -26,7 +26,7 @@ const InventoryDataTable = (props: SalesReportDataTableProps) => {
           sorting: {
             sortModel: [
               {
-                field: "id",
+                field: "quantityState",
                 sort: "desc",
               },
             ],
