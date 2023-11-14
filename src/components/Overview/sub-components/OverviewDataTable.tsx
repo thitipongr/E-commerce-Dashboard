@@ -29,7 +29,7 @@ const rows = [
   createData("Cupcake", 237),
   createData("Gingerbread", 159),
 ];
-const DataTable = (props: DataTableProps) => {
+const OverviewDataTable = (props: DataTableProps) => {
   return (
     <Grid
       container
@@ -96,13 +96,6 @@ const DataTable = (props: DataTableProps) => {
                   <TableRow
                     key={row.productName}
                     sx={{
-                      // height: {
-                      //   xs: (props.elementHeight + 52) / 6,
-                      //   sm:
-                      //     (props.elementHeight - 32 - 16 - 16 - 2 - 16 - 16) /
-                      //     6,
-                      //   md: (props.elementHeight - 32) / 7,
-                      // },
                       "&:last-child td, &:last-child th": { border: 0 },
                     }}
                   >
@@ -137,4 +130,4 @@ const DataTable = (props: DataTableProps) => {
   );
 };
 
-export default DataTable;
+export default OverviewDataTable;
